@@ -24,7 +24,7 @@ export default function SearchBar({ data }) {
         className="border border-gray-300 rounded-lg p-2 w-80"
       />
       {query && (
-        <ul className="bg-white border border-gray-200 mt-2 w-80 rounded-lg">
+        <ul className="bg-white border z-10 border-gray-200 mt-2 w-80 rounded-lg">
           {filteredData.length > 0 ? (
             filteredData.map((item, index) => (
               <li key={index} className="p-2 hover:bg-gray-100">

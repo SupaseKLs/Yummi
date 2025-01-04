@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Search from '../ui/SearchBar'
-import Cart from "@/assets/svg/cart.svg"
+import Cart from "@/components/ui/Cart"
 import Logo from "@/assets/image/Logo.png"
 export default function Navbar() {
     const data = [
@@ -26,7 +26,7 @@ export default function Navbar() {
                         <h1>หน้าแรก</h1>
                     </div>
                     <div>
-                        <Image src={Cart} alt="" />
+                        <Cart />
                     </div>
                 </div>
             </div>
