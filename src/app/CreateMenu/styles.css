@@ -1,0 +1,41 @@
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    font-size: 18px;
+    background: #fff;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+  margin-top: 20px;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* styles.css */
+.swiper-button-next, .swiper-button-prev {
+  width: 30px; /* Set the width of the arrows */
+  height: 30px; /* Set the height of the arrows */
+  background-size: 20px; /* Set the background size of the arrows */
+}
+
+/* Optional: Change the background color or icon */
+.swiper-button-next::after, .swiper-button-prev::after {
+  font-size: 20px; /* Adjust the size of the icon */
+}
+
+/* Optional: Add a hover effect to make the arrows look more interactive */
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}

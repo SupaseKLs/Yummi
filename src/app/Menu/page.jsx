@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar/page"
 import Food from "@/assets/image/Food.png"
+import Coupon from "@/assets/image/Coupon.png"
 import Image from "next/image"
 export default function HomePage() {
     return (
@@ -16,15 +17,18 @@ export default function HomePage() {
                         <h1>See all</h1>
                     </div>
 
-                    <div className="flex justify-between mt-6">
-                        <div className="w-16 h-16 bg-gray-200">
-                            1
+                    <div className="h-full flex justify-between items-center mt-6">
+                        <div className="w-16 text-sm h-full rounded-sm">
+                            <Image src={Coupon} width={50} alt="" />
+                            <h1>รายการอาหาร</h1>
                         </div>
-                        <div className="w-16 h-16 bg-gray-200">
-                            2
+                        <div className="w-16 text-sm h-full rounded-sm">
+                            <Image src={Coupon} width={50} alt="" />
+                            <h1>รายการวัตถุดิบ</h1>
                         </div>
-                        <div className="w-16 h-16 bg-gray-200">
-                            3
+                        <div className="w-16 text-sm h-full rounded-sm">
+                            <Image src={Coupon} width={50} alt="" />
+                            <h1>คำนวณต้นทุนกำไร</h1>
                         </div>
                     </div>
                 </div>

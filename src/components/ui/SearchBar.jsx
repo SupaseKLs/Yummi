@@ -1,5 +1,7 @@
-"use client"
+"use client";
 import { useState } from 'react';
+import Search from "@/assets/svg/Search.svg";
+import Image from "next/image";
 
 export default function SearchBar({ data }) {
   const [query, setQuery] = useState('');
@@ -16,13 +18,18 @@ export default function SearchBar({ data }) {
 
   return (
     <div className="flex flex-col items-center mt-8">
-      <input
-        type="text"
-        value={query}
-        onChange={handleSearch}
-        placeholder="Search..."
-        className="border border-gray-300 rounded-lg p-2 w-80"
-      />
+      <div className="relative w-80">
+        <input
+          type="text"
+          value={query}
+          onChange={handleSearch}
+          placeholder="Search..."
+          className="border border-gray-300 rounded-lg p-2 pl-10 w-full"
+        />
+        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+          <Image src={Search} alt="Search Icon" width={20} height={20} />
+        </div>
+      </div>
       {query && (
         <ul className="bg-white border z-10 border-gray-200 mt-2 w-80 rounded-lg">
           {filteredData.length > 0 ? (
