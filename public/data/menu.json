@@ -1,0 +1,242 @@
+[
+  {
+    "menu_id": 1,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "275",
+    "name": "เนื้อวัวสไลด์"
+  },
+  {
+    "menu_id": 2,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "155",
+    "name": "เนื้อหมูสไลด์"
+  },
+  {
+    "menu_id": 3,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "255",
+    "name": "ไก่สับ"
+  },
+  {
+    "menu_id": 4,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "255",
+    "name": "เนื้อปลา"
+  },
+  {
+    "menu_id": 5,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "255",
+    "name": "กุ้ง"
+  },
+  {
+    "menu_id": 6,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "255",
+    "name": "หมึก"
+  },
+  {
+    "menu_id": 7,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "255",
+    "name": "หอย"
+  },
+  {
+    "menu_id": 8,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "255",
+    "name": "ไข่ไก่"
+  },
+  {
+    "menu_id": 9,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "255",
+    "name": "หมูบด"
+  },
+  {
+    "menu_id": 10,
+    "picture": "",  
+    "ingredient_type": "เนื้อสัตว์",
+    "scale": "ขนาด",   
+    "price": "255",
+    "name": "เนื้อสันใน"
+  },
+  {
+    "menu_id": 11,
+    "picture": "",  
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",   
+    "price": "255",
+    "name": "น้ำมันมะพร้าว"
+  },
+  {
+    "menu_id": 12,
+    "picture": "",
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมันถั่วเหลือง"
+  },
+  {
+    "menu_id": 13,
+    "picture": "",
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมันมะกอก"
+  },
+  {
+    "menu_id": 14,
+    "picture": "",
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมันข้าวโพด"
+  },
+  {
+    "menu_id": 15,
+    "picture": "",
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมันปาล์ม"
+  },
+  {
+    "menu_id": 16,
+    "picture": "",
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมันมะกอกแท้"
+  },
+  {
+    "menu_id": 17,
+    "picture": "",
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมันถั่วลิสง"
+  },
+  {
+    "menu_id": 18,
+    "picture": "",
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมันงา"
+  },
+  {
+    "menu_id": 19,
+    "picture": "",
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมันคาโนลา"
+  },
+  {
+    "menu_id": 20,
+    "picture": "",
+    "ingredient_type": "น้ำมัน",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมันคาโนล่าผสม"
+  },
+  {
+    "menu_id": 21,
+    "picture": "",
+    "ingredient_type": "ซอส",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "ซอสเทอริยากิ"
+  },
+  {
+    "menu_id": 22,
+    "picture": "",
+    "ingredient_type": "เครื่องปรุง",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "เกลือ"
+  },
+  {
+    "menu_id": 23,
+    "picture": "",
+    "ingredient_type": "เครื่องปรุง",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "พริกไทย"
+  },
+  {
+    "menu_id": 24,
+    "picture": "",
+    "ingredient_type": "เครื่องปรุง",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำตาล"
+  },
+  {
+    "menu_id": 25,
+    "picture": "",
+    "ingredient_type": "เครื่องปรุง",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "ซอสถั่วเหลือง"
+  },
+  {
+    "menu_id": 26,
+    "picture": "",
+    "ingredient_type": "เครื่องปรุง",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำมะขาม"
+  },
+  {
+    "menu_id": 27,
+    "picture": "",
+    "ingredient_type": "เครื่องปรุง",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำปลา"
+  },
+  {
+    "menu_id": 28,
+    "picture": "",
+    "ingredient_type": "เครื่องปรุง",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "น้ำส้มสายชู"
+  },
+  {
+    "menu_id": 29,
+    "picture": "",
+    "ingredient_type": "เครื่องปรุง",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "กระเทียม"
+  },
+  {
+    "menu_id": 30,
+    "picture": "",
+    "ingredient_type": "เครื่องปรุง",
+    "scale": "ขนาด",
+    "price": "255",
+    "name": "ขิง"
+  }
+]

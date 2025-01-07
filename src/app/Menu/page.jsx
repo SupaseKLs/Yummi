@@ -1,45 +1,93 @@
-import Navbar from "@/components/Navbar/page"
-import Food from "@/assets/image/Food.png"
-import Coupon from "@/assets/image/Coupon.png"
-import Image from "next/image"
-export default function HomePage() {
-    return (
-        <>
-            <header>
-                <Navbar />
-            </header>
 
-            <section className="mt-10">
-                <div className="w-11/12 mx-auto">
+"use client";
+import { useState, useEffect } from "react";
+import Navbar from "@/components/Navbar/page";
+import MenuProduct from "@/components/Menu/page"
+export default function Menu() {
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [expandedProductIndex, setExpandedProductIndex] = useState(null);
 
-                    <div className="flex justify-between">
-                        <h1>Menu</h1>
-                        <h1>See all</h1>
+  useEffect(() => {
+    const storedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
+    const storedProducts = JSON.parse(localStorage.getItem("selectedProducts")) || [];
+
+    if (storedProduct) {
+      setSelectedProducts([storedProduct]);
+    } else {
+      setSelectedProducts(storedProducts);
+    }
+  }, []);
+
+  const handleReadMore = (index) => {
+    setExpandedProductIndex(expandedProductIndex === index ? null : index);
+  };
+
+  const handleDeleteProduct = (index) => {
+    const updatedProducts = selectedProducts.filter((_, i) => i !== index);
+    setSelectedProducts(updatedProducts);
+    localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+  };
+
+  return (
+    <>
+      <header>
+        <Navbar />
+      </header>
+
+      <div className="mt-10">
+        <MenuProduct />
+      </div>
+
+      <div className="w-full p-10">
+        <h1 className="text-2xl mb-6">Your Menu</h1>
+        {selectedProducts.length === 0 ? (
+          <p>Your menu is empty. Please add items.</p>
+        ) : (
+          <div className="mt-4 bg-white shadow-md p-4 rounded-md">
+              {selectedProducts.length > 0 && (
+
+                <div key={selectedProducts.length - 1} className="shadow-lg shadow-gray-500/40 p-12 rounded-xl">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h2>{selectedProducts[selectedProducts.length - 1].name}</h2>
+                      <p>{selectedProducts[selectedProducts.length - 1].price} บาท</p>
                     </div>
+                    <button
+                      onClick={() => handleDeleteProduct(selectedProducts.length - 1)}
+                      className="text-red-500"
+                    >
+                      ลบ
+                    </button>
+                  </div>
 
-                    <div className="h-full flex justify-between items-center mt-6">
-                        <div className="w-16 text-sm h-full rounded-sm">
-                            <Image src={Coupon} width={50} alt="" />
-                            <h1>รายการอาหาร</h1>
-                        </div>
-                        <div className="w-16 text-sm h-full rounded-sm">
-                            <Image src={Coupon} width={50} alt="" />
-                            <h1>รายการวัตถุดิบ</h1>
-                        </div>
-                        <div className="w-16 text-sm h-full rounded-sm">
-                            <Image src={Coupon} width={50} alt="" />
-                            <h1>คำนวณต้นทุนกำไร</h1>
-                        </div>
+                  <button
+                    onClick={() => handleReadMore(selectedProducts.length - 1)}
+                    className="text-blue-500 text-sm mt-2"
+                  >
+                    {expandedProductIndex === selectedProducts.length - 1 ? "Read Less" : "Read More"}
+                  </button>
+
+                  {expandedProductIndex === selectedProducts.length - 1 && (
+                    <div className="mt-2">
+                      <h3 className="font-semibold text-lg">Product Details</h3>
+                      <div className="p-4 bg-gray-100 rounded-lg shadow-inner">
+                        <ul>
+                          {selectedProducts.slice(0, selectedProducts.length - 1).map((product, index) => (
+                            <div key={index}>
+                              <li>{product.name}</li>
+                              <li>{product.price} บาท</li>
+                            </div>
+                          ))}
+                        </ul>
+
+                      </div>
                     </div>
+                  )}
                 </div>
-            </section>
-
-            <section className="h-96 mt-8">
-                <div className="opacity-35 h-full flex flex-col justify-center items-center">
-                    <Image src={Food} width={250} height={250} alt="Food"></Image>
-                    <h1>Empty</h1>
-                </div>
-            </section>
-        </>
-    )
-} 
+              )}
+            </div>
+        )}
+      </div>
+    </>
+  );
+}

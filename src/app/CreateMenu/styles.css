@@ -6,7 +6,6 @@
   .swiper-slide {
     font-size: 18px;
     background: #fff;
-    width: 180px;
     display: flex;
     flex-direction: column;
     min-height: 220px;
