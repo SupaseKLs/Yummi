@@ -46,7 +46,7 @@ export default function Menu() {
           <div className="mt-4 bg-white shadow-md p-4 rounded-md">
               {selectedProducts.length > 0 && (
 
-                <div key={selectedProducts.length - 1} className="shadow-lg shadow-gray-500/40 p-12 rounded-xl">
+                <div key={selectedProducts.length + 1} className="shadow-lg shadow-gray-500/40 p-12 rounded-xl">
                   <div className="flex justify-between items-center">
                     <div>
                       <h2>{selectedProducts[selectedProducts.length - 1].name}</h2>

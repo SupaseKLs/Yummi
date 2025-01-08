@@ -4,6 +4,14 @@ import Navbar from "@/components/Navbar/page"
 import Image from "next/image"
 import Food from "@/assets/image/Food.png"
 export default function HomePage() {
+    const getData = async () => {
+        const res = await fetch("http://sardines.thddns.net:7270/public/menu");
+        if (!res.ok) {
+            throw new Error("Failed to fetch product data");
+        }
+        return await res.json();
+    };
+
     const [cart, setCart] = useState([]);
 
     const addToCart = (item) => {
