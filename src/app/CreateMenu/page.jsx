@@ -72,7 +72,7 @@ export default function CreateMenu() {
   };
 
   if (!menuData) {
-    return <div>Loading...</div>;
+    return <div>Loading..</div>;
   }
 
   return (
