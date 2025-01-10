@@ -15,8 +15,8 @@ export default function CreateMenu() {
   const [showModal, setShowModal] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [menuData, setMenuData] = useState(null);
-  const [inputName, setInputName] = useState(""); // Input field for name
-  const [inputPrice, setInputPrice] = useState(""); // Input field for price
+  const [inputName, setInputName] = useState("");
+  const [inputPrice, setInputPrice] = useState("");
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [messageColor, setMessageColor] = useState("");
 
@@ -54,21 +54,47 @@ export default function CreateMenu() {
     if (!inputName || !inputPrice) {
       setConfirmationMessage("Please fill in both the menu name and price.");
       setMessageColor("bg-red-500 text-white");
-      setTimeout(() => setConfirmationMessage(""), 3000); // Clear message after 3 seconds
+      setTimeout(() => setConfirmationMessage(""), 3000);
       return;
     }
 
+    const updatedSelectedProducts = [...selectedProducts]; // Move this line up
+
     const newProduct = {
-      name: inputName,
-      price: inputPrice,
-      picture: Chicken,
+      inpName: inputName, // Use inputName for inpName
+      inpPrice: inputPrice, // Use inputPrice for inpPrice
+      items: updatedSelectedProducts.map((product) => ({
+        menu_id: product.menu_id,
+        price: product.price,
+        name: product.name,
+      })),
     };
-    setSelectedProducts((prev) => [...prev, newProduct]);
-    localStorage.setItem("selectedProducts", JSON.stringify([...selectedProducts, newProduct]));
+
+    updatedSelectedProducts.push(newProduct); // Now you can safely push the new product
+
+    console.log("Updated Selected Products:", newProduct);
+
+    localStorage.setItem("newProduct", JSON.stringify(updatedSelectedProducts));
+
+    setSelectedProducts(updatedSelectedProducts);
+
+    const menuJSON = {
+      inpName: inputName, // Use inputName for inpName
+      inpPrice: inputPrice, // Use inputPrice for inpPrice
+      items: updatedSelectedProducts.map((product) => ({
+        menu_id: product.menu_id,
+        price: product.price,
+        name: product.name,
+      })),
+    };
+
+    console.log("Menu JSON:", JSON.stringify(menuJSON));
+
     setConfirmationMessage("Products added to your menu successfully!");
     setMessageColor("bg-green-500 text-white");
+
     setShowModal(false);
-    setTimeout(() => setConfirmationMessage(""), 3000); // Clear message after 3 seconds
+    setTimeout(() => setConfirmationMessage(""), 3000);
   };
 
   if (!menuData) {
@@ -129,24 +155,26 @@ export default function CreateMenu() {
       <section className="mt-10">
         <div className="w-11/12 mx-auto">
           <div className="flex flex-col items-center">
-            <div className="flex flex-col mt-8">
-              <label htmlFor="">ชื่อเมนู</label>
+            <div className="flex flex-col mt-8 w-full">
+              <label htmlFor="menuName">ชื่อเมนู</label>
               <input
                 type="text"
+                id="menuName"
                 required
-                value={inputName} // Bind to inputName state
-                onChange={(e) => setInputName(e.target.value)} // Update inputName on change
-                className="border p-2 w-80"
+                value={inputName}
+                onChange={(e) => setInputName(e.target.value)}
+                className="border p-2 w-full md:w-80"
               />
             </div>
-            <div className="flex flex-col mt-8">
-              <label htmlFor="">ราคาขาย</label>
+            <div className="flex flex-col mt-8 w-full">
+              <label htmlFor="menuPrice">ราคาขาย</label>
               <input
-              required
                 type="text"
-                value={inputPrice} // Bind to inputPrice state
-                onChange={(e) => setInputPrice(e.target.value)} // Update inputPrice on change
-                className="border p-2 w-80"
+                id="menuPrice"
+                required
+                value={inputPrice}
+                onChange={(e) => setInputPrice(e.target.value)}
+                className="border p-2 w-full md:w-80"
               />
             </div>
           </div>
@@ -156,9 +184,7 @@ export default function CreateMenu() {
       <section className="mt-10">
         <div className="w-11/12 mx-auto">
           <div className="flex justify-between">
-            <div>
-              <h1>สินค้าแนะนำ</h1>
-            </div>
+            <h1>สินค้าแนะนำ</h1>
           </div>
 
           <div className="mt-10">

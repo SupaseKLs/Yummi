@@ -1,92 +1,91 @@
-
-"use client";
+"use client"; // components/Menu/page.js
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar/page";
-import MenuProduct from "@/components/Menu/page"
+import Menus from "@/components/Menu/page";
 export default function Menu() {
-  const [selectedProducts, setSelectedProducts] = useState([]);
-  const [expandedProductIndex, setExpandedProductIndex] = useState(null);
+  const [menuData, setMenuData] = useState([]);
+  const [isReadMoreOpen, setIsReadMoreOpen] = useState(null); // Track which menu has Read More open
 
   useEffect(() => {
-    const storedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
-    const storedProducts = JSON.parse(localStorage.getItem("selectedProducts")) || [];
+    const storedMenu = localStorage.getItem("newProduct");
+    if (storedMenu) {
+      const parsedMenu = JSON.parse(storedMenu);
+      const filteredMenu = parsedMenu
+        .map(menu => ({
+          inpName: menu.inpName,
+          inpPrice: menu.inpPrice,
+          inpDescription: menu.inpDescription || "ไม่มีรายละเอียดเพิ่มเติม", // Default description if not found
+          items: menu.items || [
 
-    if (storedProduct) {
-      setSelectedProducts([storedProduct]);
-    } else {
-      setSelectedProducts(storedProducts);
+          ], // Ensure that 'items' field is available
+        }))
+        .filter(menu => menu.inpName && menu.inpPrice); // Ensure name and price are present
+      setMenuData(filteredMenu);
+      // Store the filtered data in localStorage for use in Profit page
+      localStorage.setItem("menuData", JSON.stringify(filteredMenu));
     }
   }, []);
 
-  const handleReadMore = (index) => {
-    setExpandedProductIndex(expandedProductIndex === index ? null : index);
+  const handleDelete = (index) => {
+    const updatedMenuData = [...menuData];
+    updatedMenuData.splice(index, 1); // Remove the item at the specified index
+    setMenuData(updatedMenuData); // Update state
+    // Update localStorage with the new data
+    localStorage.setItem("menuData", JSON.stringify(updatedMenuData));
   };
 
-  const handleDeleteProduct = (index) => {
-    const updatedProducts = selectedProducts.filter((_, i) => i !== index);
-    setSelectedProducts(updatedProducts);
-    localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+  const toggleReadMore = (index) => {
+    setIsReadMoreOpen(isReadMoreOpen === index ? null : index); // Toggle Read More visibility
   };
 
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
-
+      <Navbar />
       <div className="mt-10">
-        <MenuProduct />
+        <Menus />
       </div>
+      <div>
+        {menuData.map((menu, index) => (
+          <div key={index} className="mt-4 p-4 border-b relative">
+            <h2>{menu.inpName || "ไม่ระบุชื่อเมนู"}</h2>
+            <p>{menu.inpPrice ? `${menu.inpPrice} บาท` : "ไม่ระบุราคา"}</p>
 
-      <div className="w-full p-10">
-        <h1 className="text-2xl mb-6">Your Menu</h1>
-        {selectedProducts.length === 0 ? (
-          <p>Your menu is empty. Please add items.</p>
-        ) : (
-          <div className="mt-4 bg-white shadow-md p-4 rounded-md">
-              {selectedProducts.length > 0 && (
-
-                <div key={selectedProducts.length + 1} className="shadow-lg shadow-gray-500/40 p-12 rounded-xl">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h2>{selectedProducts[selectedProducts.length - 1].name}</h2>
-                      <p>{selectedProducts[selectedProducts.length - 1].price} บาท</p>
-                    </div>
-                    <button
-                      onClick={() => handleDeleteProduct(selectedProducts.length - 1)}
-                      className="text-red-500"
-                    >
-                      ลบ
-                    </button>
+            {/* Read More */}
+            <div className="text-sm text-gray-700 mt-2">
+              <div
+                className={`overflow-hidden transition-all duration-300 ${isReadMoreOpen === index ? "max-h-[500px] overflow-y-auto" : "max-h-0"}`}
+              >
+                {/* Display items if available */}
+                {menu.items && menu.items.length > 0 && (
+                  <div>
+                    <h3 className="font-semibold">รายการเพิ่มเติม:</h3>
+                    <ul className="list-disc pl-5">
+                      {menu.items.map((item, idx) => (
+                        <li key={idx}>
+                          {item.name} - {item.price} บาท
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-
-                  <button
-                    onClick={() => handleReadMore(selectedProducts.length - 1)}
-                    className="text-blue-500 text-sm mt-2"
-                  >
-                    {expandedProductIndex === selectedProducts.length - 1 ? "Read Less" : "Read More"}
-                  </button>
-
-                  {expandedProductIndex === selectedProducts.length - 1 && (
-                    <div className="mt-2">
-                      <h3 className="font-semibold text-lg">Product Details</h3>
-                      <div className="p-4 bg-gray-100 rounded-lg shadow-inner">
-                        <ul>
-                          {selectedProducts.slice(0, selectedProducts.length - 1).map((product, index) => (
-                            <div key={index}>
-                              <li>{product.name}</li>
-                              <li>{product.price} บาท</li>
-                            </div>
-                          ))}
-                        </ul>
-
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
+                )}
+              </div>
+              <button
+                onClick={() => toggleReadMore(index)}
+                className="text-blue-500 hover:underline mt-2"
+              >
+                {isReadMoreOpen === index ? "อ่านน้อยลง" : "อ่านเพิ่มเติม"}
+              </button>
             </div>
-        )}
+
+            {/* Delete button */}
+            <button
+              onClick={() => handleDelete(index)}
+              className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
+            >
+              ลบ
+            </button>
+          </div>
+        ))}
       </div>
     </>
   );

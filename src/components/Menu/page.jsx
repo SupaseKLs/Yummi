@@ -12,7 +12,7 @@ export default function Menu() {
                 <Image src={Coupon} width={50} alt="Menu" />
                 <h1>สร้างเมนูของฉัน</h1>
             </Link>
-            <Link className="flex flex-col justify-center items-center w-16 text-sm h-full rounded-sm" href="">
+            <Link className="flex flex-col justify-center items-center w-16 text-sm h-full rounded-sm" href="/Profit">
                 <Image src={Coupon} width={50} alt="Menu" />
                 <h1>คำนวณต้นทุนกำไร</h1>
             </Link>
