@@ -44,9 +44,10 @@ export default function Menu() {
       <div className="mt-10">
         <Menus />
       </div>
-      <div>
+      <div className="w-11/12 mx-auto">
+        <h1>เมนูของฉัน</h1>
         {menuData.map((menu, index) => (
-          <div key={index} className="mt-4 p-4 border-b relative">
+          <div key={index} className="mt-4 rounded-xl p-4 shadow-lg shadow-gray-500/40 relative">
             <h2>{menu.inpName || "ไม่ระบุชื่อเมนู"}</h2>
             <p>{menu.inpPrice ? `${menu.inpPrice} บาท` : "ไม่ระบุราคา"}</p>
 
