@@ -2,9 +2,11 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar/page";
 import Menus from "@/components/Menu/page";
+
 export default function Menu() {
   const [menuData, setMenuData] = useState([]);
   const [isReadMoreOpen, setIsReadMoreOpen] = useState(null); // Track which menu has Read More open
+  const [cart, setCart] = useState([]); // State to store cart items
 
   useEffect(() => {
     const storedMenu = localStorage.getItem("newProduct");
@@ -15,9 +17,7 @@ export default function Menu() {
           inpName: menu.inpName,
           inpPrice: menu.inpPrice,
           inpDescription: menu.inpDescription || "ไม่มีรายละเอียดเพิ่มเติม", // Default description if not found
-          items: menu.items || [
-
-          ], // Ensure that 'items' field is available
+          items: menu.items || [], // Ensure that 'items' field is available
         }))
         .filter(menu => menu.inpName && menu.inpPrice); // Ensure name and price are present
       setMenuData(filteredMenu);
@@ -38,9 +38,23 @@ export default function Menu() {
     setIsReadMoreOpen(isReadMoreOpen === index ? null : index); // Toggle Read More visibility
   };
 
+  const handleAddToCart = (menu) => {
+    setCart((prevCart) => {
+      const itemIndex = prevCart.findIndex((item) => item.inpName === menu.inpName);
+      if (itemIndex >= 0) {
+        const updatedCart = [...prevCart];
+        updatedCart[itemIndex].quantity += 1; // Increase quantity
+        return updatedCart;
+      } else {
+        return [...prevCart, { ...menu, quantity: 1 }]; // New item
+      }
+    });
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
   return (
     <>
-      <Navbar />
+      <Navbar cart={cart} setCart={setCart} currentPage="Menu" />
       <div className="mt-10">
         <Menus />
       </div>
@@ -84,6 +98,13 @@ export default function Menu() {
               className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
             >
               ลบ
+            </button>
+            {/* Add to Cart button */}
+            <button
+              onClick={() => handleAddToCart(menu)}
+              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+            >
+              เพิ่มใส่ตะกร้า
             </button>
           </div>
         ))}
